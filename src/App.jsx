@@ -157,45 +157,43 @@ export default function App() {
 
   // Load from storage on mount
   useEffect(() => {
-    (async () => {
-      try {
-        const r = await window.storage.get(STORAGE_KEY);
-        if (r?.value) {
-          const parsed = JSON.parse(r.value);
-          if (Array.isArray(parsed)) setTxns(parsed);
+    try {
+      const v = localStorage.getItem(STORAGE_KEY);
+      if (v) {
+        const parsed = JSON.parse(v);
+        if (Array.isArray(parsed)) setTxns(parsed);
+      }
+    } catch (e) {}
+    try {
+      const v = localStorage.getItem(OPENINGS_KEY);
+      if (v) {
+        const parsed = JSON.parse(v);
+        if (parsed && typeof parsed === 'object') {
+          setOpenings({ box: parsed.box ?? '', guardian: parsed.guardian ?? '' });
         }
-      } catch (e) {}
-      try {
-        const r = await window.storage.get(OPENINGS_KEY);
-        if (r?.value) {
-          const parsed = JSON.parse(r.value);
-          if (parsed && typeof parsed === 'object') {
-            setOpenings({ box: parsed.box ?? '', guardian: parsed.guardian ?? '' });
-          }
-        }
-      } catch (e) {}
-      try {
-        const r = await window.storage.get(LANG_KEY);
-        if (r?.value === 'ar' || r?.value === 'en') setLang(r.value);
-      } catch (e) {}
-      setLoaded(true);
-    })();
+      }
+    } catch (e) {}
+    try {
+      const v = localStorage.getItem(LANG_KEY);
+      if (v === 'ar' || v === 'en') setLang(v);
+    } catch (e) {}
+    setLoaded(true);
   }, []);
 
   // Persist
   useEffect(() => {
     if (!loaded) return;
-    window.storage.set(STORAGE_KEY, JSON.stringify(txns)).catch(() => {});
+    try { localStorage.setItem(STORAGE_KEY, JSON.stringify(txns)); } catch (e) {}
   }, [txns, loaded]);
 
   useEffect(() => {
     if (!loaded) return;
-    window.storage.set(OPENINGS_KEY, JSON.stringify(openings)).catch(() => {});
+    try { localStorage.setItem(OPENINGS_KEY, JSON.stringify(openings)); } catch (e) {}
   }, [openings, loaded]);
 
   useEffect(() => {
     if (!loaded) return;
-    window.storage.set(LANG_KEY, lang).catch(() => {});
+    try { localStorage.setItem(LANG_KEY, lang); } catch (e) {}
   }, [lang, loaded]);
 
   // Western numerals regardless of language; tabular formatting
