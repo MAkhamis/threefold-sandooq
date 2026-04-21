@@ -1,5 +1,7 @@
 # The Box, the Guardian, & the Worker
 
+**Live:** [sandooq.khamis.info](https://sandooq.khamis.info/)
+
 **Building Fund · Settlement Book** — a small bilingual (English / العربية) ledger for a three-party building fund.
 
 This is the problem it solves: in a shared residential building, someone holds the money (the **Box**), someone manages day-to-day decisions and sometimes covers things from their own pocket (the **Guardian**), and someone else does the running around — collecting from residents, paying bills, receiving wages (the **Worker**). Over a period, dozens of small flows happen in every direction. At the end, you want to know two things:
