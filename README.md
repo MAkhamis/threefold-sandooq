@@ -21,6 +21,17 @@ With three parties, the answer is always **at most two transfers** — sometimes
 - **Google Sheet export**: a box-only TSV view (Item · Value · Type · Comments) you can copy and paste into a spreadsheet. Personal Guardian ↔ Worker settlements are excluded.
 - Full right-to-left (RTL) Arabic UI with bilingual labels and fallback item names.
 - All data is kept in the browser's `localStorage` — no server, no account, no network calls.
+- **Installable as a PWA** on iOS, Android, and desktop, with offline support after first load.
+
+## Installing as an app (PWA)
+
+After visiting the live URL once, you can install it to your home screen / dock and use it offline.
+
+- **iOS (Safari):** tap the **Share** icon → **Add to Home Screen** → **Add**. The app launches full-screen, no browser chrome.
+- **Android (Chrome):** tap the **⋮** menu → **Install app** (or **Add to Home screen**). You'll also see an install prompt automatically on supported devices.
+- **Desktop (Chrome / Edge):** click the install icon in the address bar, or **⋮** menu → **Install "Sandooq"**.
+
+A service worker caches the app shell on first load, so it continues to work without a network connection. Updates are picked up automatically the next time you open the app online.
 
 ## Tech stack
 
